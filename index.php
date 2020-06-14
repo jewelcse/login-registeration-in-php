@@ -116,7 +116,7 @@ if (isset($_GET['delete_id'])) {
                             <td><?php echo $email;?></td>
                             <td><?php echo $address;?></td>
                             <td><?php echo $phone;?></td>
-                            <td><a href='index.php?edit_id=<?php echo $id?>'><i>Edit</i></a></td>
+                            <td><a href='edit_customer.php?edit_id=<?php echo $id?>'><i>Edit</i></a></td>
                             <td><a href='index.php?delete_id=<?php echo $id?>'><i>Delete</i></a></td>
                             </tr>
 
