@@ -11,9 +11,9 @@ include_once 'db.php' ;
 if (isset($_GET['delete_id'])) {
 
 
-    $user_id = $_GET['delete_id'];
+    $cus_id = $_GET['delete_id'];
 
-    $query = "DELETE FROM user WHERE id = '{$user_id}' ";
+    $query = "DELETE FROM customers WHERE id = '{$cus_id}' ";
 
     $delete_query = mysqli_query($CONN, $query);
 
@@ -43,6 +43,7 @@ if (isset($_GET['delete_id'])) {
 
 ?>
 
+
     <div class="container">
         <div class="row bg-info p-5 m-5">
            
@@ -70,8 +71,9 @@ if (isset($_GET['delete_id'])) {
                         <th scope="col">#</th>
                         <th scope="col">First Name</th>
                         <th scope="col">Last Lastname</th>
-                        <th scope="col">Username</th>
                         <th scope="col">Email</th>
+                        <th scope="col">Address</th>
+                        <th scope="col">Phone</th>
                         <th colspan="2" class="text-center">Action</th>
                         </tr>
                     </thead>
@@ -80,26 +82,30 @@ if (isset($_GET['delete_id'])) {
                     <?php if(isset($_SESSION['logged_status'])){ 
                         
                     
-                        $select_query = "SELECT * FROM user";
+                        $select_query = "SELECT * FROM customers";
                         $execute_select_query = mysqli_query($CONN,$select_query);
                         $row_count = mysqli_num_rows($execute_select_query);
-
+                        
                         echo "<div class='ml-5 mb-4'>";
+                        echo "<div class='d-flex justify-content-between'>";
                         echo "<button type='button' class='btn btn-info'> ";
                         echo "Number of Records Found <span class='badge badge-light'>$row_count</span>";
                         echo "</button>";
+                        
+
+                        echo "<div class='add-customer'>";
+                        echo "<button type='button' class='btn btn-info'> <a href='add_customer.php' style='color:#fff'>add new record</a></button>";
                         echo "</div>";
-
-
-
+                        echo "</div>";
 
                         while($row = mysqli_fetch_assoc($execute_select_query)){
 
                             $id = $row['id'];
                             $fname = $row['firstname'];
                             $lname = $row['lastname'];
-                            $uname = $row['username'];
                             $email = $row['email'];
+                            $address = $row['address'];
+                            $phone = $row['phone'];
 
                         ?>
 
@@ -107,8 +113,9 @@ if (isset($_GET['delete_id'])) {
                             <th scope="row"><?php echo $id;?></th>
                             <td><?php echo $fname;?></td>
                             <td><?php echo $lname;?></td>
-                            <td><?php echo $uname;?></td>
                             <td><?php echo $email;?></td>
+                            <td><?php echo $address;?></td>
+                            <td><?php echo $phone;?></td>
                             <td><a href='index.php?edit_id=<?php echo $id?>'><i>Edit</i></a></td>
                             <td><a href='index.php?delete_id=<?php echo $id?>'><i>Delete</i></a></td>
                             </tr>
