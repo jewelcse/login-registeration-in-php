@@ -13,6 +13,14 @@
 <body>
     <div class="container">
         <div class="row bg-info p-5 m-5">
+        <nav>
+            <ul>
+            <li>HOME</li>
+            <li>ABOUT</li>
+            <li>CONTACT</li>
+            <li>LOGIN</li>
+            </ul>
+        </nav>
            <h2>Welcome! Home page</h2> 
         </div>
     </div>
