@@ -1,6 +1,8 @@
 
 <?php 
 
+session_start();
+
 include_once 'db.php';
 
 if(isset($_POST['login_btn'])){
@@ -9,15 +11,18 @@ if(isset($_POST['login_btn'])){
 
     $email = $_POST['email'];
     $password = $_POST['pass'];
-
+    //$email = "jon@gmail.com";
+    //$password = "123";
     //echo $email." ".$password;
 
     $query = "SELECT * FROM user WHERE email='{$email}' AND user_pass='{$password}'";
     $login_query = mysqli_query($CONN,$query);
-    if(!$login_query){
-        echo 'Login Failed '.mysqli_error($CONN);
-    }else{
+    $row_count = mysqli_num_rows($login_query);
+    if($row_count == 1){
         header('Location:index.php');
+    }else{
+        $_SESSION['error_msg'] = "Email or Password is Wrong! Please try again.";
+        //echo 'Login Failed '.mysqli_error($CONN);
     }
 
     
@@ -52,6 +57,13 @@ if(isset($_POST['login_btn'])){
         <div class="row">
             <div class="col-md-6 shadow-lg bg-info m-auto border rounded  p-5">
                 <h4 class="text-center">Login Form</h4>
+                
+                    <?php if(isset($_SESSION['error_msg'])){ ?>
+                    <div class="alert alert-danger" role="alert">
+                    <?php echo $_SESSION['error_msg'];  ?>
+                    </div>
+                    <?php } ?>
+                
                 <form class="pt-3" method="post" action="login.php">
                     <div class="form-group row">
                         <label for="email" class="col-sm-2 col-form-label"><strong>Email:</strong></label>
@@ -75,3 +87,10 @@ if(isset($_POST['login_btn'])){
     </div>
 </body>
 </html>
+
+<?php 
+
+unset($_SESSION['error_msg']);
+
+
+?>
