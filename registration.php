@@ -1,5 +1,7 @@
 <?php 
 
+include_once 'header.php';
+include_once 'navbar.php';
 include_once 'db.php';
 
 if(isset($_POST['register_btn'])){

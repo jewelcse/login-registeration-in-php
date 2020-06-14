@@ -1,28 +1,26 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Home</title>
-    <link rel="stylesheet" href="css/bootstrap.css">
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/jquery-3.5.1.min.js"></script>
-</head>
-<body>
+
+<?php include_once 'header.php' ; ?>
+<?php include_once 'navbar.php' ; ?>
+
     <div class="container">
         <div class="row bg-info p-5 m-5">
-        <nav>
-            <ul>
-            <li>HOME</li>
-            <li>ABOUT</li>
-            <li>CONTACT</li>
-            <li>LOGIN</li>
-            </ul>
-        </nav>
-           <h2>Welcome! Home page</h2> 
+           
+           <div class="col-md-6 text-center">
+               
+        <?php if(isset($_SESSION['logged_user_name'])){
+            
+            echo "<h2>";
+            echo "Welcome! ".$_SESSION['logged_user_name'];
+            echo "</h2>";
+            
+        }else{
+            echo "<h2>";
+            echo "Home Page";
+            echo "</h2>";
+        } ?>
+            
+           </div>
         </div>
     </div>
-</body>
-</html>
+
+<?php include_once 'footer.php' ; ?>

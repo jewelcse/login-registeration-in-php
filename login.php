@@ -1,25 +1,27 @@
 
 <?php 
 
-session_start();
-
+include_once 'header.php';
+include_once 'navbar.php';
 include_once 'db.php';
 
 if(isset($_POST['login_btn'])){
 
     //echo 'working...';
 
-    $email = $_POST['email'];
+    $uname = $_POST['uname'];
     $password = $_POST['pass'];
     //$email = "jon@gmail.com";
     //$password = "123";
     //echo $email." ".$password;
 
-    $query = "SELECT * FROM user WHERE email='{$email}' AND user_pass='{$password}'";
+    $query = "SELECT * FROM user WHERE username='{$uname}' AND user_pass='{$password}'";
     $login_query = mysqli_query($CONN,$query);
     $row_count = mysqli_num_rows($login_query);
     if($row_count == 1){
         header('Location:index.php');
+        $_SESSION['logged_status'] = true;
+        $_SESSION['logged_user_name'] = $uname;
     }else{
         $_SESSION['error_msg'] = "Email or Password is Wrong! Please try again.";
         //echo 'Login Failed '.mysqli_error($CONN);
@@ -66,9 +68,9 @@ if(isset($_POST['login_btn'])){
                 
                 <form class="pt-3" method="post" action="login.php">
                     <div class="form-group row">
-                        <label for="email" class="col-sm-2 col-form-label"><strong>Email:</strong></label>
+                        <label for="uname" class="col-sm-2 col-form-label"><strong>Email:</strong></label>
                         <div class="col-sm-10">
-                        <input type="eamil" name="email" required class="form-control" placeholder="Enter eamil">
+                        <input type="text" name="uname" required class="form-control" placeholder="Enter username">
                         </div>
                     </div>
                     <div class="form-group row">
