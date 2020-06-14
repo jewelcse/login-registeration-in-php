@@ -56,13 +56,13 @@ if(isset($_POST['login_btn'])){
                     <div class="form-group row">
                         <label for="email" class="col-sm-2 col-form-label"><strong>Email:</strong></label>
                         <div class="col-sm-10">
-                        <input type="eamil" name="email" class="form-control" placeholder="Enter eamil">
+                        <input type="eamil" name="email" required class="form-control" placeholder="Enter eamil">
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="password" class="col-sm-2 col-form-label"><strong>Password:</strong></label>
                         <div class="col-sm-10">
-                        <input type="password" name="pass" class="form-control" placeholder="Password">
+                        <input type="password" name="pass" required class="form-control" placeholder="Password">
                     </div>
                     </div>
                     <div class="text-center">
