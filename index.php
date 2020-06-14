@@ -1,7 +1,47 @@
 
 <?php include_once 'header.php' ; ?>
 <?php include_once 'navbar.php' ; ?>
-<?php include_once 'db.php' ; ?>
+<?php 
+
+
+include_once 'db.php' ; 
+
+
+
+if (isset($_GET['delete_id'])) {
+
+
+    $user_id = $_GET['delete_id'];
+
+    $query = "DELETE FROM user WHERE id = '{$user_id}' ";
+
+    $delete_query = mysqli_query($CONN, $query);
+
+    if ($delete_query) {
+
+        header("Location:index.php");
+
+    } else {
+
+        die("QUERY FAILED" . mysqli_error($connection));
+
+    }
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+?>
 
     <div class="container">
         <div class="row bg-info p-5 m-5">
@@ -43,7 +83,16 @@
                         $select_query = "SELECT * FROM user";
                         $execute_select_query = mysqli_query($CONN,$select_query);
                         $row_count = mysqli_num_rows($execute_select_query);
-                        echo $row_count;
+
+                        echo "<div class='ml-5 mb-4'>";
+                        echo "<button type='button' class='btn btn-info'> ";
+                        echo "Number of Records Found <span class='badge badge-light'>$row_count</span>";
+                        echo "</button>";
+                        echo "</div>";
+
+
+
+
                         while($row = mysqli_fetch_assoc($execute_select_query)){
 
                             $id = $row['id'];
@@ -89,5 +138,6 @@
             </div>
         </div>
     </div>
+
 
 <?php include_once 'footer.php' ; ?>
